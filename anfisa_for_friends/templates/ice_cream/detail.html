@@ -1,10 +1,55 @@
 {% extends "base.html" %}
-{% block title %}
-  Анфиса для друзей. Подробное описание мороженого
-{% endblock %}
-{% block content %}
+
+{% load static %}
+
+
+  {% comment %} Анфиса для друзей. Подробное описание мороженого
+
   <h1>Подробное описание мороженого</h1>
   <h3>{{ ice_cream.title }}</h3>
-  <p>{{ ice_cream.description }}</p>
-{% endblock %}
+  <p>{{ ice_cream.description }}</p> {% endcomment %}
+
  
+
+<!DOCTYPE html> 
+<html lang="ru"> 
+  <head>    
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'img/fav/fav.ico' %}" type="image">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>
+    {% block title %}
+      {{ ice_cream.title|lower }}
+    {% endblock %} 
+    </title>
+     
+  </head>
+  <body>
+
+    <main class="pt-5 my-5">       
+      <div class="container">
+        {% block content %}
+        <h1 class="pb-2 mb-0">Классический пломбир</h1>  
+        <div class="row mt-3">
+          <div class="col-12 col-md-6">
+            <h2>Описание</h2>
+            <p>{{ ice_cream.description }}</p>
+          </div> 
+          <div class="col-12 col-md-6 mb-3">
+            <!-- Картинку берём из статики -->
+            <img 
+              class="img-fluid" 
+              height="400" width="300"
+              src="{% static 'img/image-holder.png' %}"
+              >      
+          </div>
+        </div>     
+        {% endblock %}
+      </div>      
+    </main>
+
+  </body>
+  <script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</html>
